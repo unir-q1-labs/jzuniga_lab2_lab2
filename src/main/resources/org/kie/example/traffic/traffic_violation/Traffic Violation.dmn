@@ -134,6 +134,19 @@
     <dmn:informationRequirement id="_AF80E523-1881-4DE9-A69D-C4CD49321A82">
       <dmn:requiredDecision href="#_30461461-64A2-4DA3-841A-F555A78F8090"/>
     </dmn:informationRequirement>
+    <dmn:context id="_3DD12D82-3597-4158-9197-6C02FA78F7F2">
+      <dmn:contextEntry>
+        <dmn:variable id="_3D236A62-173E-48F9-8401-F834B1806979" name="Total Points" typeRef="number"/>
+        <dmn:literalExpression id="_8A1F87F9-72A0-4294-91B4-05806535D1DF">
+          <dmn:text>Driver.Points + Fine.Points</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_267F8AE7-8144-4F7E-A343-A54A83F0A15C">
+          <dmn:text>if Total Points >= 20 then "Yes" else "No"</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
   </dmn:decision>
   <dmn:inputData id="_06513C09-E7E9-4C26-B45A-51031188C49E" name="Driver">
     <dmn:extensionElements/>
@@ -154,6 +167,17 @@
             <kie:width>100.0</kie:width>
             <kie:width>100.0</kie:width>
             <kie:width>100.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_3DD12D82-3597-4158-9197-6C02FA78F7F2">
+            <kie:width>50.0</kie:width>
+            <kie:width>100.0</kie:width>
+            <kie:width>468.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_8A1F87F9-72A0-4294-91B4-05806535D1DF">
+            <kie:width>468.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_267F8AE7-8144-4F7E-A343-A54A83F0A15C">
+            <kie:width>468.0</kie:width>
           </kie:ComponentWidths>
         </kie:ComponentsWidthsExtension>
       </di:extension>
