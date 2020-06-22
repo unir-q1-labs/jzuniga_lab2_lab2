@@ -46,6 +46,31 @@
       <dmn:typeRef>number</dmn:typeRef>
     </dmn:itemComponent>
   </dmn:itemDefinition>
+  <dmn:decision id="_08F3C5C6-42BA-42FA-BD3A-B266E1FD4142" name="Should the driver be suspended?">
+    <dmn:extensionElements/>
+    <dmn:question>Should the driver be suspended due to points on his driver license?</dmn:question>
+    <dmn:allowedAnswers>Yes, No</dmn:allowedAnswers>
+    <dmn:variable id="_E9772C66-A417-44B1-B1AA-8BFE9C09E21C" name="Should the driver be suspended?" typeRef="string"/>
+    <dmn:informationRequirement id="_F801B275-C8F5-4A07-98C7-71614E0C8E30">
+      <dmn:requiredInput href="#_06513C09-E7E9-4C26-B45A-51031188C49E"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_AF80E523-1881-4DE9-A69D-C4CD49321A82">
+      <dmn:requiredDecision href="#_30461461-64A2-4DA3-841A-F555A78F8090"/>
+    </dmn:informationRequirement>
+    <dmn:context id="_3DD12D82-3597-4158-9197-6C02FA78F7F2">
+      <dmn:contextEntry>
+        <dmn:variable id="_3D236A62-173E-48F9-8401-F834B1806979" name="Total Points" typeRef="number"/>
+        <dmn:literalExpression id="_8A1F87F9-72A0-4294-91B4-05806535D1DF">
+          <dmn:text>Driver.Points + Fine.Points</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_267F8AE7-8144-4F7E-A343-A54A83F0A15C">
+          <dmn:text>if Total Points >= 20 then "Yes" else "No"</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
   <dmn:decision id="_30461461-64A2-4DA3-841A-F555A78F8090" name="Fine">
     <dmn:extensionElements/>
     <dmn:variable id="_9EC2EAD1-FBAB-46F3-B664-27F8BF1256E4" name="Fine" typeRef="tFine"/>
@@ -123,31 +148,6 @@
       </dmn:rule>
     </dmn:decisionTable>
   </dmn:decision>
-  <dmn:decision id="_08F3C5C6-42BA-42FA-BD3A-B266E1FD4142" name="Should the driver be suspended?">
-    <dmn:extensionElements/>
-    <dmn:question>Should the driver be suspended due to points on his driver license?</dmn:question>
-    <dmn:allowedAnswers>Yes, No</dmn:allowedAnswers>
-    <dmn:variable id="_E9772C66-A417-44B1-B1AA-8BFE9C09E21C" name="Should the driver be suspended?" typeRef="string"/>
-    <dmn:informationRequirement id="_F801B275-C8F5-4A07-98C7-71614E0C8E30">
-      <dmn:requiredInput href="#_06513C09-E7E9-4C26-B45A-51031188C49E"/>
-    </dmn:informationRequirement>
-    <dmn:informationRequirement id="_AF80E523-1881-4DE9-A69D-C4CD49321A82">
-      <dmn:requiredDecision href="#_30461461-64A2-4DA3-841A-F555A78F8090"/>
-    </dmn:informationRequirement>
-    <dmn:context id="_3DD12D82-3597-4158-9197-6C02FA78F7F2">
-      <dmn:contextEntry>
-        <dmn:variable id="_3D236A62-173E-48F9-8401-F834B1806979" name="Total Points" typeRef="number"/>
-        <dmn:literalExpression id="_8A1F87F9-72A0-4294-91B4-05806535D1DF">
-          <dmn:text>Driver.Points + Fine.Points</dmn:text>
-        </dmn:literalExpression>
-      </dmn:contextEntry>
-      <dmn:contextEntry>
-        <dmn:literalExpression id="_267F8AE7-8144-4F7E-A343-A54A83F0A15C">
-          <dmn:text>if Total Points >= 20 then "Yes" else "No"</dmn:text>
-        </dmn:literalExpression>
-      </dmn:contextEntry>
-    </dmn:context>
-  </dmn:decision>
   <dmn:inputData id="_06513C09-E7E9-4C26-B45A-51031188C49E" name="Driver">
     <dmn:extensionElements/>
     <dmn:variable id="_975BDD22-6730-450E-B01A-73CAE8CA5960" name="Driver" typeRef="tDriver"/>
@@ -160,14 +160,6 @@
     <dmndi:DMNDiagram>
       <di:extension>
         <kie:ComponentsWidthsExtension>
-          <kie:ComponentWidths dmnElementRef="_36B917ED-1348-49C8-9212-D84A26FF58B5">
-            <kie:width>50.0</kie:width>
-            <kie:width>242.0</kie:width>
-            <kie:width>341.0</kie:width>
-            <kie:width>100.0</kie:width>
-            <kie:width>100.0</kie:width>
-            <kie:width>100.0</kie:width>
-          </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_3DD12D82-3597-4158-9197-6C02FA78F7F2">
             <kie:width>50.0</kie:width>
             <kie:width>100.0</kie:width>
@@ -179,8 +171,25 @@
           <kie:ComponentWidths dmnElementRef="_267F8AE7-8144-4F7E-A343-A54A83F0A15C">
             <kie:width>468.0</kie:width>
           </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_36B917ED-1348-49C8-9212-D84A26FF58B5">
+            <kie:width>50.0</kie:width>
+            <kie:width>242.0</kie:width>
+            <kie:width>341.0</kie:width>
+            <kie:width>100.0</kie:width>
+            <kie:width>100.0</kie:width>
+            <kie:width>100.0</kie:width>
+          </kie:ComponentWidths>
         </kie:ComponentsWidthsExtension>
       </di:extension>
+      <dmndi:DMNShape id="dmnshape-_08F3C5C6-42BA-42FA-BD3A-B266E1FD4142" dmnElementRef="_08F3C5C6-42BA-42FA-BD3A-B266E1FD4142" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="431" y="20" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
       <dmndi:DMNShape id="dmnshape-_30461461-64A2-4DA3-841A-F555A78F8090" dmnElementRef="_30461461-64A2-4DA3-841A-F555A78F8090" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="255" green="255" blue="255"/>
@@ -196,16 +205,7 @@
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="304" y="290" width="100" height="50"/>
-        <dmndi:DMNLabel/>
-      </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-_08F3C5C6-42BA-42FA-BD3A-B266E1FD4142" dmnElementRef="_08F3C5C6-42BA-42FA-BD3A-B266E1FD4142" isCollapsed="false">
-        <dmndi:DMNStyle>
-          <dmndi:FillColor red="255" green="255" blue="255"/>
-          <dmndi:StrokeColor red="0" green="0" blue="0"/>
-          <dmndi:FontColor red="0" green="0" blue="0"/>
-        </dmndi:DMNStyle>
-        <dc:Bounds x="431" y="20" width="100" height="50"/>
+        <dc:Bounds x="325" y="290" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
       <dmndi:DMNShape id="dmnshape-_FF8D13D3-E04D-4769-B105-9D29AC0C9703" dmnElementRef="_FF8D13D3-E04D-4769-B105-9D29AC0C9703" isCollapsed="false">
@@ -217,17 +217,17 @@
         <dc:Bounds x="557" y="290" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNEdge id="dmnedge-_9EA1A5DE-C122-46F0-BA0B-C0A8028B6007" dmnElementRef="_9EA1A5DE-C122-46F0-BA0B-C0A8028B6007">
-        <di:waypoint x="607" y="290"/>
-        <di:waypoint x="608" y="216"/>
-      </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-_F801B275-C8F5-4A07-98C7-71614E0C8E30" dmnElementRef="_F801B275-C8F5-4A07-98C7-71614E0C8E30">
-        <di:waypoint x="354" y="290"/>
+        <di:waypoint x="375" y="290"/>
         <di:waypoint x="481" y="70"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-_AF80E523-1881-4DE9-A69D-C4CD49321A82" dmnElementRef="_AF80E523-1881-4DE9-A69D-C4CD49321A82">
         <di:waypoint x="608" y="166"/>
         <di:waypoint x="481" y="70"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_9EA1A5DE-C122-46F0-BA0B-C0A8028B6007" dmnElementRef="_9EA1A5DE-C122-46F0-BA0B-C0A8028B6007">
+        <di:waypoint x="607" y="290"/>
+        <di:waypoint x="608" y="216"/>
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
