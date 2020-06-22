@@ -38,6 +38,14 @@
       <dmn:typeRef>string</dmn:typeRef>
     </dmn:itemComponent>
   </dmn:itemDefinition>
+  <dmn:itemDefinition id="_A67A428C-3A45-4419-9D1D-BF3ED65FF525" name="tFine" isCollection="false">
+    <dmn:itemComponent id="_B806034D-02EF-46ED-A7CA-2BA0A8CB0D1C" name="Points" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_649CFBFA-7151-4E67-ACF5-0297ED18BA51" name="Amount" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
   <dmn:decision id="_30461461-64A2-4DA3-841A-F555A78F8090" name="Fine">
     <dmn:extensionElements/>
     <dmn:variable id="_9EC2EAD1-FBAB-46F3-B664-27F8BF1256E4" name="Fine"/>
